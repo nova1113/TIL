@@ -1,0 +1,9 @@
+등록 번호 디폴드 값으로 올해 년도 + 시퀀스 번호(번호 앞 공백 '0'으로 변환)로 설정 하기
+
+(substring(CONVERT([varchar],getdate(),(112)),(3),(2))+replace(str(NEXT VALUE FOR [SEQUENCE_NAME],(8)),space((1)),'0'))
+
+(substring(CONVERT([varchar],getdate(),(112)),(3),(2))
+- 현재 날짜를 'yyyyMMdd'형식으로 변환 한 후 yy(2-3)만 가져오는 부분
+
+replace(str(NEXT VALUE FOR [SEQUENCE_NAME],(8)),space((1)),'0'))
+- 시퀀스 번호를 8자리 문자열로 바꿔 주면서 공백 부분을 '0'으로 채워 00000003형식으로 설정
